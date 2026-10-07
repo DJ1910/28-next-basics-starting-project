@@ -24,10 +24,16 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NEXT_APP_DIR: '.' 
+
 jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.NEXT_APP_DIR }} # 💡 Forces all steps to run inside your app folder
     steps:
       - name: Checkout
         uses: actions/checkout@v4
